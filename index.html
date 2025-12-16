@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>維格禮儀 | 專業生命禮儀服務 | 24小時服務</title>
+    <meta name="description" content="維格禮儀提供專業、莊嚴、溫馨的生命禮儀服務。從臨終諮詢到後續關懷，我們用心陪伴您走過這段旅程。">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+
+        /* 定義莫蘭迪暖綠色系 */
+        :root {
+            --morandi-dark: #46564e;   /* 深灰綠 (替代黑色) */
+            --morandi-main: #758a7e;   /* 主色調 (灰綠) */
+            --morandi-light: #e0e5df;  /* 淺灰綠 */
+            --morandi-accent: #a8b092; /* 暖草綠 (點綴) */
+            --warm-bg: #f7f5f0;        /* 暖米白背景 */
+            --warm-text: #4a453a;      /* 暖深灰文字 */
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            scroll-behavior: smooth;
+            background-color: var(--warm-bg);
+            color: var(--warm-text);
+        }
+        
+        h1, h2, h3, h4, h5, h6, .serif {
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        /* 覆寫 Tailwind 預設顏色以符合變數 */
+        .bg-morandi-dark { background-color: var(--morandi-dark); }
+        .bg-morandi-main { background-color: var(--morandi-main); }
+        .bg-morandi-light { background-color: var(--morandi-light); }
+        .text-morandi-dark { color: var(--morandi-dark); }
+        .text-morandi-main { color: var(--morandi-main); }
+        .text-morandi-accent { color: var(--morandi-accent); }
+        
+        .hover\:bg-morandi-dark:hover { background-color: #36423c; } /* Darker shade for hover */
+        .hover\:bg-morandi-main:hover { background-color: #5e7065; } /* Darker shade for hover */
+
+        .hero-pattern {
+            background-image: url('https://i.meee.com.tw/zrFGgCr.jpg');
+            background-size: cover;
+            background-position: center 50%; /* 微調圖片位置 */
+            background-attachment: fixed;
+        }
+
+        /* 柔和的漸層文字 */
+        .morandi-gradient-text {
+            background: linear-gradient(45deg, var(--morandi-dark), var(--morandi-main));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-card {
+            transition: all 0.4s ease;
+            background-color: #ffffff;
+            border: 1px solid #e8e6e1;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(70, 86, 78, 0.1);
+            border-color: var(--morandi-accent);
+        }
+
+        /* Smooth scroll margin for fixed header */
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        /* 自定義表單樣式 */
+        .custom-input {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .custom-input:focus {
+            border-color: var(--morandi-accent);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-[#f7f5f0] text-[#4a453a]">
+
+    <!-- Top Bar -->
+    <div class="bg-morandi-dark text-[#dcdcdc] py-2 text-sm hidden md:block">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <p class="tracking-wider">維格禮儀 - 您最值得信賴的生命託付</p>
+            <div class="flex items-center space-x-6">
+                <span class="flex items-center"><i class="fas fa-phone-alt mr-2 text-morandi-accent"></i> 24H 服務專線：0800-888-999</span>
+                <span class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-morandi-accent"></i> 台北市中山區民權東路二段</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-[#fdfcfb] shadow-sm sticky top-0 z-50 transition-all duration-300 border-b border-[#eceae5]">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center space-x-2 group">
+                <div class="w-10 h-10 bg-morandi-main rounded-full flex items-center justify-center text-white shadow-sm">
+                    <i class="fas fa-hands text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold text-morandi-dark tracking-wider serif">維格禮儀</h1>
+                    <p class="text-xs text-[#888] tracking-[0.2em] uppercase hidden sm:block">Vigor Funeral Services</p>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="text-[#666] hover:text-morandi-main font-medium transition tracking-wide">關於維格</a>
+                <a href="#services" class="text-[#666] hover:text-morandi-main font-medium transition tracking-wide">禮儀服務</a>
+                <a href="#process" class="text-[#666] hover:text-morandi-main font-medium transition tracking-wide">服務流程</a>
+                <a href="#environments" class="text-[#666] hover:text-morandi-main font-medium transition tracking-wide">會館環境</a>
+                <a href="#faq" class="text-[#666] hover:text-morandi-main font-medium transition tracking-wide">常見問答</a>
+                <a href="#contact" class="bg-morandi-dark text-white px-6 py-2 rounded-full hover:bg-morandi-main transition flex items-center shadow-md hover:shadow-lg">
+                    <i class="fas fa-phone mr-2 text-xs"></i> 聯絡我們
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-morandi-dark focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#fdfcfb] border-t border-[#eceae5] absolute w-full shadow-lg">
+            <div class="flex flex-col p-4 space-y-4 text-center">
+                <a href="#about" class="text-[#666] hover:text-morandi-main font-medium py-2">關於維格</a>
+                <a href="#services" class="text-[#666] hover:text-morandi-main font-medium py-2">禮儀服務</a>
+                <a href="#process" class="text-[#666] hover:text-morandi-main font-medium py-2">服務流程</a>
+                <a href="#environments" class="text-[#666] hover:text-morandi-main font-medium py-2">會館環境</a>
+                <a href="#faq" class="text-[#666] hover:text-morandi-main font-medium py-2">常見問答</a>
+                <a href="#contact" class="text-morandi-main font-bold py-2">聯絡我們</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-[600px] md:h-[750px] flex items-center justify-center hero-pattern text-center">
+        <div class="absolute inset-0 bg-[#46564e]/30 mix-blend-multiply"></div> <!-- 暖色遮罩 -->
+        <div class="relative z-10 px-4 max-w-4xl mx-auto text-white">
+            <h2 class="text-xl md:text-2xl tracking-[0.4em] mb-6 text-[#dcebe3] font-light shadow-sm">讓愛延續 圓滿託付</h2>
+            <h1 class="text-4xl md:text-6xl font-bold mb-8 serif leading-tight drop-shadow-md">用溫暖與專業<br>陪伴最後一哩路</h1>
+            <p class="text-lg md:text-xl text-[#f1f1f1] mb-12 font-light max-w-2xl mx-auto tracking-wide drop-shadow-sm">
+                維格禮儀秉持著「尊重生命、視逝如親」的信念，以莊嚴而不失溫度的儀式，為生命畫下最圓滿的句點。
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-5">
+                <a href="tel:0800888999" class="bg-morandi-main hover:bg-[#5e7065] text-white px-10 py-4 rounded text-lg font-medium transition shadow-lg flex items-center justify-center tracking-wide border border-transparent">
+                    <i class="fas fa-phone-alt mr-3 animate-pulse"></i> 24H 緊急協助
+                </a>
+                <a href="#services" class="bg-white/10 backdrop-blur-sm border border-white/40 hover:bg-white hover:text-morandi-dark text-white px-10 py-4 rounded text-lg font-medium transition flex items-center justify-center tracking-wide">
+                    了解服務方案
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-24 bg-white relative overflow-hidden">
+        <!-- 裝飾背景圓形 -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-morandi-light rounded-full mix-blend-multiply filter blur-3xl opacity-50 transform translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#f0eadd] rounded-full mix-blend-multiply filter blur-3xl opacity-50 transform -translate-x-1/2 translate-y-1/2"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <div class="w-full md:w-1/2 relative">
+                    <div class="absolute -top-6 -left-6 w-32 h-32 border-t-2 border-l-2 border-morandi-accent hidden md:block opacity-60"></div>
+                    <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=1000&auto=format&fit=crop" alt="Peaceful flower" class="rounded-sm shadow-2xl w-full h-[450px] object-cover grayscale-[20%] sepia-[10%]">
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 border-b-2 border-r-2 border-morandi-accent hidden md:block opacity-60"></div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <span class="text-morandi-main font-bold tracking-[0.2em] uppercase mb-3 block text-sm">About Us</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-morandi-dark mb-8 serif">關於維格禮儀</h2>
+                    <p class="text-[#666] leading-loose mb-6 text-justify">
+                        「維格」，意指維護尊嚴、格調高雅。我們深知，面對親人的離去，家屬心中充滿了不捨與慌亂。因此，維格禮儀團隊由一群經驗豐富、且具備人文素養的禮儀師組成，致力於提供最貼心、最專業的諮詢與服務。
+                    </p>
+                    <p class="text-[#666] leading-loose mb-10 text-justify">
+                        我們不只協助處理繁雜的治喪流程，更重視家屬的情感撫慰。無論是傳統中式禮儀、莊嚴的西式追思，或是個性化的客製告別式，我們都用心傾聽您的需求，讓逝者在尊嚴中安息，讓生者在溫暖中釋懷。
+                    </p>
+                    <div class="grid grid-cols-2 gap-y-6 gap-x-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-morandi-accent mr-3 text-xl"></i>
+                            <span class="font-medium text-[#555]">價格透明公開</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-morandi-accent mr-3 text-xl"></i>
+                            <span class="font-medium text-[#555]">24小時待命</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-morandi-accent mr-3 text-xl"></i>
+                            <span class="font-medium text-[#555]">專業證照團隊</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-morandi-accent mr-3 text-xl"></i>
+                            <span class="font-medium text-[#555]">客製化規劃</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-[#f4f1eb]">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20">
+                <span class="text-morandi-main font-bold tracking-[0.2em] uppercase mb-3 block text-sm">Our Services</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-morandi-dark serif">多元禮儀服務方案</h2>
+                <div class="w-16 h-[2px] bg-morandi-accent mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Service 1 -->
+                <div class="rounded-xl overflow-hidden service-card group">
+                    <div class="h-60 overflow-hidden relative">
+                        <img src="https://i.meee.com.tw/jYy4INC.jpg" alt="中式禮儀祭壇" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 grayscale-[10%]">
+                        <div class="absolute inset-0 bg-morandi-dark/20 group-hover:bg-transparent transition duration-500"></div>
+                    </div>
+                    <div class="p-8 bg-white">
+                        <div class="w-14 h-14 bg-[#f4f1eb] rounded-full flex items-center justify-center text-morandi-main text-2xl mb-6 group-hover:bg-morandi-main group-hover:text-white transition duration-300">
+                            <i class="fas fa-vihara"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 serif text-morandi-dark">中式佛教/道教禮儀</h3>
+                        <p class="text-[#777] mb-6 text-sm leading-loose">
+                            依循傳統禮俗與宗教科儀，安排法師誦經、做七法事、家祭公祭等流程。莊嚴隆重，引領亡者往生極樂，庇佑子孫平安。
+                        </p>
+                        <ul class="text-sm text-[#888] space-y-3 mb-8">
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-morandi-accent rounded-full mr-2"></span> 豎靈安座與早晚拜飯</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-morandi-accent rounded-full mr-2"></span> 法師誦經超薦</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-morandi-accent rounded-full mr-2"></span> 傳統入殮與移柩儀式</li>
+                        </ul>
+                        <a href="#" class="inline-block text-morandi-main font-medium hover:text-morandi-dark transition border-b border-morandi-main pb-1">了解詳情</a>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="rounded-xl overflow-hidden service-card group">
+                    <div class="h-60 overflow-hidden relative">
+                        <img src="https://i.meee.com.tw/QFSYasb.jpg" alt="西式追思禮拜" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 grayscale-[10%]">
+                        <div class="absolute inset-0 bg-morandi-dark/20 group-hover:bg-transparent transition duration-500"></div>
+                    </div>
+                    <div class="p-8 bg-white">
+                        <div class="w-14 h-14 bg-[#f4f1eb] rounded-full flex items-center justify-center text-morandi-main text-2xl mb-6 group-hover:bg-morandi-main group-hover:text-white transition duration-300">
+                            <i class="fas fa-cross"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 serif text-morandi-dark">西式/天主教/基督教</h3>
+                        <p class="text-[#777] mb-6 text-sm leading-loose">
+                            以溫馨感人的追思音樂會形式，取代繁複的傳統儀式。透過詩歌、禱告與親友分享，在主的愛與恩典中，盼望天家再相聚。
+                        </p>
+                        <ul class="text-sm text-[#888] space-y-3 mb-8">
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-morandi-accent rounded-full mr-2"></span> 教會場地佈置與協調</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-morandi-accent rounded-full mr-2"></span> 牧師/神父證道安排</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-morandi-accent rounded-full mr-2"></span> 詩班獻詩與生平回顧</li>
+                        </ul>
+                        <a href="#" class="inline-block text-morandi-main font-medium hover:text-morandi-dark transition border-b border-morandi-main pb-1">了解詳情</a>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="rounded-xl overflow-hidden service-card group">
+                    <div class="h-60 overflow-hidden relative">
+                        <img src="https://i.meee.com.tw/xmP6wQz.jpg" alt="客製化送行儀式" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 grayscale-[10%]">
+                        <div class="absolute inset-0 bg-morandi-dark/20 group-hover:bg-transparent transition duration-500"></div>
+                    </div>
+                    <div class="p-8 bg-white">
+                        <div class="w-14 h-14 bg-[#f4f1eb] rounded-full flex items-center justify-center text-morandi-main text-2xl mb-6 group-hover:bg-morandi-main group-hover:text-white transition duration-300">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 serif text-morandi-dark">客製化與貧困協助</h3>
+                        <p class="text-[#777] mb-6 text-sm leading-loose">
+                            我們尊重每一個生命的獨特性，提供生前契約諮詢與個性化告別式規劃。同時，針對低收入戶或無力殮葬者，提供優惠或協助申請補助。
+                        </p>
+                        <ul class="text-sm text-[#888] space-y-3 mb-8">
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-morandi-accent rounded-full mr-2"></span> 環保葬（樹葬/花葬/海葬）</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-morandi-accent rounded-full mr-2"></span> 生前契約規劃</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-morandi-accent rounded-full mr-2"></span> 弱勢團體公益協助</li>
+                        </ul>
+                        <a href="#" class="inline-block text-morandi-main font-medium hover:text-morandi-dark transition border-b border-morandi-main pb-1">了解詳情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-24 bg-morandi-dark text-[#e6e6e6]">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20">
+                <span class="text-morandi-accent font-bold tracking-[0.2em] uppercase mb-3 block text-sm">Process</span>
+                <h2 class="text-3xl md:text-4xl font-bold serif text-[#f0f0f0]">臨終關懷與服務流程</h2>
+                <p class="text-[#b0b8b4] mt-4 font-light tracking-wide">當事情發生時，請第一時間撥打我們的專線，接下來的，交給我們。</p>
+            </div>
+
+            <div class="relative">
+                <!-- Timeline Line (Desktop) -->
+                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-[1px] bg-[#65756c]"></div>
+
+                <!-- Step 1 -->
+                <div class="flex flex-col md:flex-row items-center mb-16 relative z-10 group">
+                    <div class="w-full md:w-1/2 md:pr-16 text-center md:text-right mb-6 md:mb-0">
+                        <h3 class="text-2xl font-bold text-morandi-accent mb-3 group-hover:text-white transition">01. 臨終諮詢</h3>
+                        <p class="text-[#ccc] leading-relaxed">24小時專線待命，提供臨終注意事項諮詢，協助家屬心理建設與準備。</p>
+                    </div>
+                    <div class="w-14 h-14 bg-[#5e7065] rounded-full flex items-center justify-center border-4 border-morandi-dark shadow-xl shrink-0 group-hover:bg-morandi-accent group-hover:text-morandi-dark transition duration-300">
+                        <i class="fas fa-phone-alt text-white group-hover:text-morandi-dark"></i>
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-16 hidden md:block"></div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flex flex-col md:flex-row items-center mb-16 relative z-10 group">
+                    <div class="w-full md:w-1/2 md:pr-16 hidden md:block"></div>
+                    <div class="w-14 h-14 bg-[#5e7065] rounded-full flex items-center justify-center border-4 border-morandi-dark shadow-xl shrink-0 group-hover:bg-morandi-accent group-hover:text-morandi-dark transition duration-300">
+                        <i class="fas fa-ambulance text-white group-hover:text-morandi-dark"></i>
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-16 text-center md:text-left mt-6 md:mt-0">
+                        <h3 class="text-2xl font-bold text-morandi-accent mb-3 group-hover:text-white transition">02. 接體安置</h3>
+                        <p class="text-[#ccc] leading-relaxed">禮儀師與接體車抵達現場，協助遺體淨身、更衣，並護送至殯儀館或指定地點安置。</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flex flex-col md:flex-row items-center mb-16 relative z-10 group">
+                    <div class="w-full md:w-1/2 md:pr-16 text-center md:text-right mb-6 md:mb-0">
+                        <h3 class="text-2xl font-bold text-morandi-accent mb-3 group-hover:text-white transition">03. 治喪協調</h3>
+                        <p class="text-[#ccc] leading-relaxed">與家屬溝通治喪細節，包含宗教信仰、儀式規模、日期選定與預算規劃，擬定服務契約。</p>
+                    </div>
+                    <div class="w-14 h-14 bg-[#5e7065] rounded-full flex items-center justify-center border-4 border-morandi-dark shadow-xl shrink-0 group-hover:bg-morandi-accent group-hover:text-morandi-dark transition duration-300">
+                        <i class="fas fa-file-signature text-white group-hover:text-morandi-dark"></i>
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-16 hidden md:block"></div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="flex flex-col md:flex-row items-center mb-16 relative z-10 group">
+                    <div class="w-full md:w-1/2 md:pr-16 hidden md:block"></div>
+                    <div class="w-14 h-14 bg-[#5e7065] rounded-full flex items-center justify-center border-4 border-morandi-dark shadow-xl shrink-0 group-hover:bg-morandi-accent group-hover:text-morandi-dark transition duration-300">
+                        <i class="fas fa-praying-hands text-white group-hover:text-morandi-dark"></i>
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-16 text-center md:text-left mt-6 md:mt-0">
+                        <h3 class="text-2xl font-bold text-morandi-accent mb-3 group-hover:text-white transition">04. 奠禮儀式</h3>
+                        <p class="text-[#ccc] leading-relaxed">佈置靈堂，進行入殮、告別式（家祭/公祭），引導家屬與親友向逝者做最後的道別。</p>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="flex flex-col md:flex-row items-center relative z-10 group">
+                    <div class="w-full md:w-1/2 md:pr-16 text-center md:text-right mb-6 md:mb-0">
+                        <h3 class="text-2xl font-bold text-morandi-accent mb-3 group-hover:text-white transition">05. 火化晉塔/後續關懷</h3>
+                        <p class="text-[#ccc] leading-relaxed">陪同火化、撿骨封罐，並護送靈骨至塔位安厝。提供百日、對年等後續祭祀提醒。</p>
+                    </div>
+                    <div class="w-14 h-14 bg-[#5e7065] rounded-full flex items-center justify-center border-4 border-morandi-dark shadow-xl shrink-0 group-hover:bg-morandi-accent group-hover:text-morandi-dark transition duration-300">
+                        <i class="fas fa-dove text-white group-hover:text-morandi-dark"></i>
+                    </div>
+                    <div class="w-full md:w-1/2 md:pl-16 hidden md:block"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-morandi-dark serif">常見問題 FAQ</h2>
+            </div>
+            
+            <div class="space-y-6">
+                <details class="bg-[#fcfaf7] p-8 rounded-xl group cursor-pointer border border-[#eceae5] open:border-morandi-main transition hover:shadow-md">
+                    <summary class="flex justify-between items-center font-bold text-lg text-[#555] list-none">
+                        <span>家人剛過世，我該做的第一件事是什麼？</span>
+                        <span class="transition group-open:rotate-180 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm text-morandi-main"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-[#777] mt-6 leading-loose border-t border-[#eceae5] pt-4">
+                        請保持冷靜，若在家中過世，請先撥打我們的 24 小時服務專線，我們將立即派遣禮儀師與救護車前往協助開立死亡證明與接體。若在醫院，護理站會協助辦理出院手續，我們也會派員至醫院往生室協助後續。
+                    </p>
+                </details>
+
+                <details class="bg-[#fcfaf7] p-8 rounded-xl group cursor-pointer border border-[#eceae5] open:border-morandi-main transition hover:shadow-md">
+                    <summary class="flex justify-between items-center font-bold text-lg text-[#555] list-none">
+                        <span>禮儀服務的費用大約是多少？是否透明？</span>
+                        <span class="transition group-open:rotate-180 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm text-morandi-main"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-[#777] mt-6 leading-loose border-t border-[#eceae5] pt-4">
+                        維格禮儀堅持價格公開透明。費用依據宗教儀式（中/西式）、繁簡程度、用品等級而有不同。我們會提供詳細的價目表，並依據您的預算量身規劃，簽訂契約後絕不隨意加價。
+                    </p>
+                </details>
+
+                <details class="bg-[#fcfaf7] p-8 rounded-xl group cursor-pointer border border-[#eceae5] open:border-morandi-main transition hover:shadow-md">
+                    <summary class="flex justify-between items-center font-bold text-lg text-[#555] list-none">
+                        <span>你們有提供「生前契約」嗎？</span>
+                        <span class="transition group-open:rotate-180 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm text-morandi-main"><i class="fas fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="text-[#777] mt-6 leading-loose border-t border-[#eceae5] pt-4">
+                        有的。生前契約能讓您依照自己的意願規劃身後事，不僅減輕家人的負擔，也能鎖定未來的禮儀費用，避免通膨影響。歡迎來電預約諮詢。
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Footer -->
+    <footer id="contact" class="bg-morandi-dark text-[#d1d6d3] pt-24 pb-12 border-t-8 border-morandi-main">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+                <!-- Brand Info -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-8">
+                        <div class="w-10 h-10 bg-[#5e7065] rounded-full flex items-center justify-center text-white">
+                            <i class="fas fa-hands text-sm"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-[#f0f0f0] serif tracking-wide">維格禮儀</h2>
+                    </div>
+                    <p class="text-sm leading-loose mb-8 text-[#b0b8b4]">
+                        以人為本，用心傳承。<br>
+                        我們是您在最艱難時刻的堅強後盾，提供專業、誠信、溫暖的生命禮儀服務。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-[#5e7065] rounded flex items-center justify-center hover:bg-morandi-accent hover:text-morandi-dark transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-[#5e7065] rounded flex items-center justify-center hover:bg-morandi-accent hover:text-morandi-dark transition"><i class="fab fa-line"></i></a>
+                        <a href="#" class="w-10 h-10 bg-[#5e7065] rounded flex items-center justify-center hover:bg-morandi-accent hover:text-morandi-dark transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-white font-bold text-lg mb-8 border-b border-[#65756c] pb-3 inline-block">快速連結</h3>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#about" class="hover:text-morandi-accent transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-50"></i> 關於我們</a></li>
+                        <li><a href="#services" class="hover:text-morandi-accent transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-50"></i> 服務項目</a></li>
+                        <li><a href="#process" class="hover:text-morandi-accent transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-50"></i> 服務流程</a></li>
+                        <li><a href="#faq" class="hover:text-morandi-accent transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-50"></i> 禮儀常識</a></li>
+                        <li><a href="#" class="hover:text-morandi-accent transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2 opacity-50"></i> 電子訃聞</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-white font-bold text-lg mb-8 border-b border-[#65756c] pb-3 inline-block">聯絡資訊</h3>
+                    <ul class="space-y-6 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1.5 mr-4 text-morandi-accent"></i>
+                            <span>台北市中山區民權東路二段<br>(近第一殯儀館)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-4 text-morandi-accent"></i>
+                            <span class="text-xl font-bold text-white tracking-wider">0800-888-999</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-4 text-morandi-accent"></i>
+                            <span>service@vigor-funeral.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Simple Form -->
+                <div>
+                    <h3 class="text-white font-bold text-lg mb-8 border-b border-[#65756c] pb-3 inline-block">立即諮詢</h3>
+                    <form onsubmit="event.preventDefault(); alert('感謝您的諮詢，我們將儘速與您聯繫。');" class="space-y-4">
+                        <input type="text" placeholder="您的稱呼" class="w-full custom-input rounded px-4 py-3 text-white focus:outline-none text-sm placeholder-[#8ba094] transition">
+                        <input type="tel" placeholder="聯絡電話" class="w-full custom-input rounded px-4 py-3 text-white focus:outline-none text-sm placeholder-[#8ba094] transition">
+                        <textarea placeholder="諮詢事項..." rows="3" class="w-full custom-input rounded px-4 py-3 text-white focus:outline-none text-sm placeholder-[#8ba094] transition"></textarea>
+                        <button type="submit" class="w-full bg-morandi-main hover:bg-[#5e7065] text-white font-bold py-3 rounded transition shadow-lg tracking-wide">發送訊息</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="border-t border-[#5e7065] pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-[#8ba094]">
+                <p>&copy; 2025 維格禮儀 Vigor Funeral Services. All Rights Reserved.</p>
+                <div class="mt-4 md:mt-0 space-x-6">
+                    <a href="#" class="hover:text-white transition">隱私權政策</a>
+                    <a href="#" class="hover:text-white transition">服務條款</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button for Mobile -->
+    <a href="tel:0800888999" class="fixed bottom-6 right-6 bg-morandi-main text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center hover:bg-[#5e7065] transition transform hover:scale-110 z-50 md:hidden animate-bounce border-2 border-white/20">
+        <i class="fas fa-phone text-2xl"></i>
+    </a>
+    
+    <!-- Floating Action Button for Desktop -->
+    <a href="tel:0800888999" class="fixed bottom-10 right-10 bg-morandi-main text-white px-7 py-4 rounded-full shadow-2xl hidden md:flex items-center justify-center hover:bg-[#5e7065] transition transform hover:scale-105 z-50 font-bold group border-2 border-white/20 tracking-wide">
+        <i class="fas fa-headset mr-3 group-hover:rotate-12 transition text-lg"></i> 24H 禮儀諮詢
+    </a>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
