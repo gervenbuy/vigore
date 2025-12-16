@@ -115,6 +115,7 @@
             <div class="hidden md:flex space-x-8 items-center">
                 <a href="#about" class="text-[#666] hover:text-morandi-main font-medium transition tracking-wide">關於維格</a>
                 <a href="#services" class="text-[#666] hover:text-morandi-main font-medium transition tracking-wide">禮儀服務</a>
+                <a href="#pricing" class="text-[#666] hover:text-morandi-main font-medium transition tracking-wide">服務價目</a>
                 <a href="#process" class="text-[#666] hover:text-morandi-main font-medium transition tracking-wide">服務流程</a>
                 <a href="#environments" class="text-[#666] hover:text-morandi-main font-medium transition tracking-wide">會館環境</a>
                 <a href="#faq" class="text-[#666] hover:text-morandi-main font-medium transition tracking-wide">常見問答</a>
@@ -134,6 +135,7 @@
             <div class="flex flex-col p-4 space-y-4 text-center">
                 <a href="#about" class="text-[#666] hover:text-morandi-main font-medium py-2">關於維格</a>
                 <a href="#services" class="text-[#666] hover:text-morandi-main font-medium py-2">禮儀服務</a>
+                <a href="#pricing" class="text-[#666] hover:text-morandi-main font-medium py-2">服務價目</a>
                 <a href="#process" class="text-[#666] hover:text-morandi-main font-medium py-2">服務流程</a>
                 <a href="#environments" class="text-[#666] hover:text-morandi-main font-medium py-2">會館環境</a>
                 <a href="#faq" class="text-[#666] hover:text-morandi-main font-medium py-2">常見問答</a>
@@ -285,6 +287,31 @@
                         <a href="#" class="inline-block text-morandi-main font-medium hover:text-morandi-dark transition border-b border-morandi-main pb-1">了解詳情</a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section (New Google Sheet Integrated Section) -->
+    <section id="pricing" class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-morandi-main font-bold tracking-[0.2em] uppercase mb-3 block text-sm">Price List</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-morandi-dark serif">透明公開價目表</h2>
+                <div class="w-16 h-[2px] bg-morandi-accent mx-auto mt-6"></div>
+                <p class="text-[#888] mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
+                    我們承諾價格公開透明，絕無隱形消費。以下為常用服務項目參考，實際內容可依需求彈性調整。
+                </p>
+            </div>
+
+            <!-- Loading State -->
+            <div id="pricing-loading" class="text-center py-12 hidden">
+                <i class="fas fa-spinner fa-spin text-3xl text-morandi-main"></i>
+                <p class="mt-4 text-[#888]">正在載入最新價目...</p>
+            </div>
+
+            <!-- Pricing Grid -->
+            <div id="pricing-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Javascript will populate this -->
             </div>
         </div>
     </section>
@@ -507,6 +534,116 @@
                 mobileMenu.classList.add('hidden');
             });
         });
+
+        /* =========================================
+           Google Sheet Pricing Loader
+           ========================================= */
+        
+        // 設定您的 Google Sheet ID (從網址列取得: /d/之後, /edit之前 的亂碼)
+        // 範例: https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
+        const sheetId = ''; // 請在此填入您的 ID，若為空則顯示範例資料
+
+        // 預設範例資料 (當沒有 Sheet ID 或載入失敗時顯示)
+        const fallbackData = [
+            {
+                title: "基本尊榮方案",
+                desc: "適用於簡單莊嚴的告別儀式，包含基礎禮儀服務與用品。",
+                price: "NT$ 128,000 起",
+                image: "https://images.unsplash.com/photo-1605218439390-1c62b9f33339?q=80&w=600&auto=format&fit=crop"
+            },
+            {
+                title: "溫馨典雅方案",
+                desc: "增加會場花藝佈置與司儀引導，適合中型規模的家祭公祭。",
+                price: "NT$ 188,000 起",
+                image: "https://images.unsplash.com/photo-1596524430615-b46475ddff6e?q=80&w=600&auto=format&fit=crop"
+            },
+            {
+                title: "豪華圓滿方案",
+                desc: "高規格靈堂佈置、專業國樂團演奏與全程錄影，極盡哀榮。",
+                price: "NT$ 288,000 起",
+                image: "https://images.unsplash.com/photo-1579975096649-e773152704a9?q=80&w=600&auto=format&fit=crop"
+            },
+            {
+                title: "環保自然葬",
+                desc: "回歸自然，包含樹葬或花葬儀式安排與相關環保骨灰罐。",
+                price: "NT$ 58,000 起",
+                image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=600&auto=format&fit=crop"
+            }
+        ];
+
+        const container = document.getElementById('pricing-container');
+        const loading = document.getElementById('pricing-loading');
+
+        function renderPricing(data) {
+            container.innerHTML = '';
+            data.forEach((item, index) => {
+                // 動態產生卡片 HTML
+                const cardHTML = `
+                    <div class="bg-[#fcfaf7] rounded-lg overflow-hidden border border-[#eceae5] hover:shadow-xl hover:border-morandi-accent transition duration-300 flex flex-col h-full group">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 filter grayscale-[10%]">
+                            <div class="absolute top-0 right-0 bg-morandi-main text-white px-3 py-1 text-sm font-bold shadow-md m-2 rounded">
+                                ${item.price}
+                            </div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <h3 class="text-xl font-bold text-morandi-dark mb-3 serif border-b border-[#eceae5] pb-2">${item.title}</h3>
+                            <p class="text-[#777] text-sm leading-relaxed mb-4 flex-1">
+                                ${item.desc}
+                            </p>
+                            <a href="#contact" onclick="document.querySelector('textarea').value='我想詢問：${item.title}';" class="text-center w-full py-2 border border-morandi-main text-morandi-main rounded hover:bg-morandi-main hover:text-white transition text-sm font-medium">
+                                預約諮詢
+                            </a>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += cardHTML;
+            });
+        }
+
+        async function fetchGoogleSheet() {
+            if (!sheetId) {
+                renderPricing(fallbackData);
+                return;
+            }
+
+            loading.classList.remove('hidden');
+            
+            // 使用 Google Visualization API 查詢語言 (JSONP/JSON hack)
+            // 假設 Sheet 的欄位順序為: Title(A), Description(B), Price(C), Image(D)
+            const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`;
+
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                
+                // 清理 Google 回傳的額外字元 /*O_o*/ ... );
+                const jsonText = text.substring(47).slice(0, -2);
+                const json = JSON.parse(jsonText);
+                
+                const rows = json.table.rows;
+                const sheetData = rows.map(row => {
+                    return {
+                        title: row.c[0]?.v || '無標題',
+                        desc: row.c[1]?.v || '',
+                        price: row.c[2]?.v || '洽詢',
+                        image: row.c[3]?.v || 'https://via.placeholder.com/600x400?text=No+Image'
+                    };
+                });
+
+                renderPricing(sheetData);
+            } catch (error) {
+                console.error('Error fetching Google Sheet:', error);
+                console.log('Falling back to default data');
+                renderPricing(fallbackData);
+            } finally {
+                loading.classList.add('hidden');
+            }
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', fetchGoogleSheet);
+
     </script>
 </body>
 </html>
